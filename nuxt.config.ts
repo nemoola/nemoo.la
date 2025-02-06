@@ -16,12 +16,12 @@ export default defineNuxtConfig({
 	},
 	modules: [
 		'@nuxt/icon',
-		'@nuxt/eslint',
+		// '@nuxt/eslint',
 	],
-	eslint: {
-		checker: true,
-		config: {
-			stylistic: true
-		}
-	}
+	// eslint: {
+	// 	checker: true,
+	// 	config: {
+	// 		stylistic: true
+	// 	}
+	// }
 });
