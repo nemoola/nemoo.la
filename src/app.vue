@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center h-screen">
-    <div class="flex flex-col box-border size-120 bg-white items-center justify-center p-5 space-y-5">
+    <div class="flex flex-col box-border size-120 bg-white items-center justify-center space-y-5">
       <div class="">
         <img class="rounded-full mx-auto size-40 shadow-2xl" src="https://github.com/nemoola.png"  alt="nemoola"/>
       </div>
