@@ -47,7 +47,7 @@ function closeMenu() {
     </div>
     <!-- responsive menu -->
     <div
-      class="md:hidde flex h-screen flex-col items-center space-y-12 px-4 py-8 font-pixel backdrop-blur-sm"
+      class="md:hidden flex h-screen flex-col items-center space-y-12 px-4 py-8 font-pixel backdrop-blur-sm"
       v-show="isMenuOpen"
     >
       <h1 class="animate-blink text-4xl text-primary">Menu</h1>

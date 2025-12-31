@@ -20,7 +20,7 @@ const history = [
   {
     date: "2025/06",
     title: "株式会社xxxxxx アルバイトとして入社",
-    description: "プログラミグさせてもらってます。",
+    description: "プログラミングさせてもらってます。",
   },
 ];
 </script>
