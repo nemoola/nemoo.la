@@ -1,0 +1,302 @@
+---
+import SocialLinkButton from '../common/SocialLinkButton.astro';
+---
+
+<hero-section>
+  <div class="hero-wrap">
+    <canvas data-hero-canvas></canvas>
+
+    <div class="hero">
+      <div class="hero-eyebrow fi fi-d1">
+        <span class="hero-eyebrow-tag">Developer</span>
+        <span class="hero-eyebrow-tag">Student</span>
+      </div>
+      <h1 class="fi fi-d2">Nemoola</h1>
+      <p class="hero-sub fi fi-d3">
+        大学生。セキュリティ &amp; CTFに興味あり。<br />
+        バグバウンティを探求中。
+      </p>
+      <div class="hero-links fi fi-d4">
+        <SocialLinkButton href="https://x.com/Nemo0la" label="X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+        </SocialLinkButton>
+        <SocialLinkButton href="https://github.com/nemoola" label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg>
+        </SocialLinkButton>
+        <SocialLinkButton href="https://t.me/nemo0la" label="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg>
+        </SocialLinkButton>
+        <SocialLinkButton href="https://blog.nemoo.la" label="Blog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+        </SocialLinkButton>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+      Scroll
+    </div>
+  </div>
+</hero-section>
+
+<script>
+  class HeroSectionElement extends HTMLElement {
+    connectedCallback() {
+      const canvas = this.querySelector('[data-hero-canvas]');
+      if (!(canvas instanceof HTMLCanvasElement)) {
+        return;
+      }
+
+      const animatedElements = this.querySelectorAll('.fi');
+      animatedElements.forEach((element) => {
+        window.setTimeout(() => {
+          element.classList.add('in');
+        }, 60);
+      });
+
+      const context = canvas.getContext('2d');
+      if (!context) {
+        return;
+      }
+
+      let width = 0;
+      let height = 0;
+      let particles = [];
+      const mouse = { x: -999, y: -999 };
+      const count = 140;
+
+      const rand = (min, max) => min + Math.random() * (max - min);
+
+      const resize = () => {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+      };
+
+      const createParticle = () => ({
+        x: rand(0, width),
+        y: rand(0, height),
+        r: rand(1, 2.5),
+        vx: rand(-0.25, 0.25),
+        vy: rand(-0.3, -0.05),
+        alpha: rand(0.15, 0.55),
+      });
+
+      const init = () => {
+        particles = Array.from({ length: count }, createParticle);
+      };
+
+      const hue = (x) => Math.round((x / width) * 300 + 20);
+      const isDark = () => getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() === '#111010';
+      const particleLightness = () => (isDark() ? '68%' : '38%');
+      const particleAlpha = (base) => (isDark() ? base : base * 1.6);
+
+      const draw = () => {
+        context.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i += 1) {
+          for (let j = i + 1; j < particles.length; j += 1) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 170) {
+              const midX = (particles[i].x + particles[j].x) / 2;
+              context.beginPath();
+              context.strokeStyle = `hsla(${hue(midX)}, 75%, 62%, ${0.28 * (1 - distance / 170)})`;
+              context.lineWidth = 1.1;
+              context.moveTo(particles[i].x, particles[i].y);
+              context.lineTo(particles[j].x, particles[j].y);
+              context.stroke();
+            }
+          }
+
+          const mouseDx = particles[i].x - mouse.x;
+          const mouseDy = particles[i].y - mouse.y;
+          const mouseDistance = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
+
+          if (mouseDistance < 200) {
+            context.beginPath();
+            context.strokeStyle = `hsla(${hue(particles[i].x)}, 80%, 62%, ${0.45 * (1 - mouseDistance / 200)})`;
+            context.lineWidth = 1.2;
+            context.moveTo(particles[i].x, particles[i].y);
+            context.lineTo(mouse.x, mouse.y);
+            context.stroke();
+          }
+        }
+
+        for (const particle of particles) {
+          context.beginPath();
+          context.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
+          context.fillStyle = `hsla(${hue(particle.x)}, 75%, ${particleLightness()}, ${particleAlpha(particle.alpha)})`;
+          context.fill();
+
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+
+          if (particle.y < -10) {
+            particle.y = height + 5;
+            particle.x = rand(0, width);
+          }
+
+          if (particle.x < -10) particle.x = width + 5;
+          if (particle.x > width + 10) particle.x = -5;
+        }
+
+        window.requestAnimationFrame(draw);
+      };
+
+      window.addEventListener('resize', () => {
+        resize();
+        init();
+      });
+
+      window.addEventListener('mousemove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = event.clientX - rect.left;
+        mouse.y = event.clientY - rect.top;
+      });
+
+      resize();
+      init();
+      draw();
+    }
+  }
+
+  if (!customElements.get('hero-section')) {
+    customElements.define('hero-section', HeroSectionElement);
+  }
+</script>
+
+<style>
+  .hero-wrap {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  [data-hero-canvas] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 0 56px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--fg2);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .hero-eyebrow-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--fg2);
+    background: var(--bg2);
+    cursor: default;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+  }
+
+  .hero-eyebrow-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-eyebrow-tag + .hero-eyebrow-tag { margin-left: 8px; }
+
+  h1 {
+    font-size: clamp(64px, 10vw, 136px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--fg);
+    margin-bottom: 32px;
+    text-wrap: balance;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--fg2);
+    font-weight: 400;
+    max-width: 440px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 56px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--fg2);
+    text-transform: uppercase;
+    opacity: 0.6;
+    animation: floatY 3s ease-in-out infinite;
+  }
+
+  .scroll-hint-line {
+    width: 32px;
+    height: 1px;
+    background: var(--fg2);
+  }
+
+  .fi {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .fi.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .fi-d1 { transition-delay: 0.08s; }
+  .fi-d2 { transition-delay: 0.16s; }
+  .fi-d3 { transition-delay: 0.24s; }
+  .fi-d4 { transition-delay: 0.32s; }
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  @media (max-width: 760px) {
+    .hero { padding: 0 24px; }
+    .scroll-hint { left: 24px; }
+  }
+</style>

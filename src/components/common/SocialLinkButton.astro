@@ -1,0 +1,45 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a href={href} class="social-link-button" target="_blank" rel="noreferrer">
+  <slot />
+  {label}
+</a>
+
+<style>
+  .social-link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--fg2);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: blur(6px);
+    letter-spacing: 0.02em;
+  }
+
+  .social-link-button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+    transform: translateY(-1px);
+  }
+
+  .social-link-button :global(svg) {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+</style>

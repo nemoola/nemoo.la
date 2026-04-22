@@ -1,0 +1,195 @@
+<site-nav>
+  <nav data-nav>
+    <a href="#" class="nav-logo">nemoo<span class="dot">.</span>la</a>
+    <div class="nav-right">
+      <button class="theme-toggle" data-theme-toggle title="Toggle dark mode" type="button">
+        <svg
+          data-theme-icon
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#history">History</a></li>
+      </ul>
+    </div>
+  </nav>
+</site-nav>
+
+<script>
+  const SUN_SVG =
+    '<circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>';
+  const MOON_SVG = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
+
+  class SiteNavElement extends HTMLElement {
+    connectedCallback() {
+      const nav = this.querySelector('[data-nav]');
+      const toggle = this.querySelector('[data-theme-toggle]');
+      const icon = this.querySelector('[data-theme-icon]');
+
+      if (!(nav instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement) || !(icon instanceof SVGElement)) {
+        return;
+      }
+
+      let isDark = false;
+
+      const updateIcon = () => {
+        icon.innerHTML = isDark ? SUN_SVG : MOON_SVG;
+      };
+
+      const setTheme = (theme) => {
+        isDark = theme === 'dark';
+        updateIcon();
+
+        if (isDark) {
+          document.documentElement.style.setProperty('--bg', '#111010');
+          document.documentElement.style.setProperty('--bg2', '#1a1918');
+          document.documentElement.style.setProperty('--fg', '#f0efec');
+          document.documentElement.style.setProperty('--fg2', '#888480');
+          document.documentElement.style.setProperty('--border', '#2c2b29');
+          document.documentElement.style.setProperty('--accent-light', 'oklch(18% 0.04 278)');
+          return;
+        }
+
+        document.documentElement.style.setProperty('--bg', '#f9f8f6');
+        document.documentElement.style.setProperty('--bg2', '#f2f0ec');
+        document.documentElement.style.setProperty('--fg', '#0f0e0c');
+        document.documentElement.style.setProperty('--fg2', '#7a7872');
+        document.documentElement.style.setProperty('--border', '#e5e3de');
+        document.documentElement.style.setProperty('--accent-light', 'oklch(95% 0.04 210)');
+      };
+
+      const handleScroll = () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+      };
+
+      toggle.addEventListener('click', () => {
+        setTheme(isDark ? 'light' : 'dark');
+      });
+
+      window.addEventListener('scroll', handleScroll);
+      updateIcon();
+      handleScroll();
+    }
+  }
+
+  if (!customElements.get('site-nav')) {
+    customElements.define('site-nav', SiteNavElement);
+  }
+</script>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+
+  nav.scrolled {
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(16px);
+    border-color: var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  .dot { color: var(--accent); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--fg2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .theme-toggle {
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, transform 0.2s;
+    color: var(--fg2);
+    padding: 0;
+  }
+
+  .theme-toggle:hover {
+    color: var(--accent);
+    transform: rotate(20deg);
+  }
+
+  .theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 760px) {
+    nav {
+      padding: 16px 24px;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .nav-right {
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .nav-links { gap: 20px; }
+  }
+</style>
