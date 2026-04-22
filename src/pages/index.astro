@@ -1,17 +1,932 @@
 ---
+const socialLinks = [
+  {
+    href: 'https://x.com/Nemo0la',
+    label: 'X',
+    icon: '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>',
+    fill: 'currentColor',
+    stroke: undefined,
+  },
+  {
+    href: 'https://github.com/nemoola',
+    label: 'GitHub',
+    icon: '<path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>',
+    fill: 'currentColor',
+    stroke: undefined,
+  },
+  {
+    href: 'https://t.me/nemo0la',
+    label: 'Telegram',
+    icon: '<path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>',
+    fill: 'currentColor',
+    stroke: undefined,
+  },
+  {
+    href: 'https://blog.nemoo.la',
+    label: 'Blog',
+    icon: '<path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>',
+    fill: 'none',
+    stroke: 'currentColor',
+  },
+];
 
+const aboutColumns = [
+  {
+    label: 'Profile',
+    items: ['Go Language', 'Zed Editor', 'INFJ', 'Japan'],
+  },
+  {
+    label: 'Languages',
+    items: ['Go', 'V', 'C++', 'PHP'],
+  },
+  {
+    label: 'Frameworks & Tools',
+    items: ['Nuxt.js', 'TailwindCSS', 'Docker', 'Git'],
+  },
+  {
+    label: 'Interests',
+    items: ['Security', 'CTF', 'OSS'],
+  },
+];
+
+const timelineItems = [
+  {
+    date: '2020 / 04',
+    title: 'プログラミング開始',
+    description: 'コロナで学校が休みになって暇でプログラミングを始めた。',
+  },
+  {
+    date: '2022 / 04',
+    title: '茨城県立工業高等学校 入学',
+  },
+  {
+    date: '2025 / 03',
+    title: '茨城県立工業高等学校 卒業',
+  },
+  {
+    date: '2025 / 04',
+    title: 'xxxx大学 入学',
+  },
+  {
+    date: '2025 / 06',
+    title: '株式会社xxxxxx アルバイトとして入社',
+    description: 'プログラミングさせてもらってます。',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Nemoola</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #f9f8f6;
+        --bg2: #f2f0ec;
+        --fg: #0f0e0c;
+        --fg2: #7a7872;
+        --accent: oklch(54% 0.17 210);
+        --accent-light: oklch(95% 0.04 210);
+        --border: #e5e3de;
+        --font: 'Space Grotesk', sans-serif;
+        --mono: 'Space Mono', monospace;
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background 0.4s, border-color 0.3s;
+        border-bottom: 1px solid transparent;
+      }
+
+      nav.scrolled {
+        background: color-mix(in srgb, var(--bg) 90%, transparent);
+        backdrop-filter: blur(16px);
+        border-color: var(--border);
+      }
+
+      .nav-logo {
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+      .nav-logo .dot { color: var(--accent); }
+
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--fg2);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 1px;
+        background: var(--accent);
+        transition: width 0.2s;
+      }
+
+      .nav-links a:hover { color: var(--accent); }
+      .nav-links a:hover::after { width: 100%; }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .theme-toggle {
+        width: 20px;
+        height: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.2s, transform 0.2s;
+        color: var(--fg2);
+        padding: 0;
+      }
+
+      .theme-toggle:hover {
+        color: var(--accent);
+        transform: rotate(20deg);
+      }
+
+      .theme-toggle svg { width: 16px; height: 16px; }
+
+      .hero-wrap {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      #hero-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .hero {
+        position: relative;
+        z-index: 1;
+        padding: 0 56px;
+        max-width: 1100px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: var(--fg2);
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+
+      .hero-eyebrow-tag {
+        display: inline-block;
+        padding: 5px 12px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        color: var(--fg2);
+        background: var(--bg2);
+        cursor: default;
+        transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+      }
+
+      .hero-eyebrow-tag:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-light);
+        transform: translateY(-2px);
+      }
+
+      .hero-eyebrow-tag + .hero-eyebrow-tag { margin-left: 8px; }
+
+      .hero h1 {
+        font-size: clamp(64px, 10vw, 136px);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: var(--fg);
+        margin-bottom: 32px;
+        text-wrap: balance;
+      }
+
+      .hero-sub {
+        font-size: 17px;
+        color: var(--fg2);
+        font-weight: 400;
+        max-width: 440px;
+        margin-bottom: 48px;
+        line-height: 1.8;
+      }
+
+      .hero-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .hero-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--fg2);
+        text-decoration: none;
+        transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+        background: color-mix(in srgb, var(--bg) 80%, transparent);
+        backdrop-filter: blur(6px);
+        letter-spacing: 0.02em;
+      }
+
+      .hero-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-light);
+        transform: translateY(-1px);
+      }
+
+      .hero-link svg {
+        width: 13px;
+        height: 13px;
+        flex-shrink: 0;
+      }
+
+      .scroll-hint {
+        position: absolute;
+        bottom: 36px;
+        left: 56px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        color: var(--fg2);
+        text-transform: uppercase;
+        opacity: 0.6;
+        animation: floatY 3s ease-in-out infinite;
+      }
+
+      .scroll-hint-line {
+        width: 32px;
+        height: 1px;
+        background: var(--fg2);
+      }
+
+      @keyframes floatY {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(4px); }
+      }
+
+      .section-wrap {
+        min-height: 100vh;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 96px 56px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 64px;
+        border-top: 1px solid var(--border);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+
+      .section-num {
+        font-family: var(--mono);
+        font-size: clamp(36px, 5vw, 60px);
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: -0.03em;
+        line-height: 1;
+        opacity: 0.4;
+      }
+
+      .section-title {
+        font-size: clamp(36px, 5vw, 60px);
+        font-weight: 700;
+        color: var(--fg);
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+
+      .about-full {
+        min-height: 100vh;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 96px 56px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 64px;
+        border-top: 1px solid var(--border);
+      }
+
+      .about-statement-text {
+        font-size: clamp(17px, 2vw, 22px);
+        font-weight: 400;
+        line-height: 1.85;
+        color: var(--fg2);
+        max-width: 600px;
+      }
+
+      .about-statement-text em {
+        font-style: normal;
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .about-statement-text strong {
+        color: var(--fg);
+        font-weight: 600;
+      }
+
+      .about-grid-bottom {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+
+      .about-col-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--fg2);
+        margin-bottom: 16px;
+      }
+
+      .about-col-item {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--fg);
+        padding: 7px 0;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: color 0.15s;
+      }
+
+      .about-col-item:last-child { border-bottom: none; }
+      .about-col-item:hover { color: var(--accent); }
+
+      .about-col-item::before {
+        content: '';
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: currentColor;
+        opacity: 0.4;
+        flex-shrink: 0;
+      }
+
+      .projects-empty {
+        padding: 72px 48px;
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        text-align: center;
+        background: var(--bg);
+        transition: border-color 0.2s;
+      }
+
+      .projects-empty:hover { border-color: var(--accent); }
+
+      .projects-empty-glyph {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--fg2);
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+        opacity: 0.4;
+      }
+
+      .projects-empty h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--fg);
+        margin-bottom: 8px;
+      }
+
+      .projects-empty p {
+        font-size: 14px;
+        color: var(--fg2);
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 140px 24px 1fr;
+        gap: 0;
+        position: relative;
+      }
+
+      .timeline-date {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+      }
+
+      .timeline-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .timeline-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid var(--border);
+        background: var(--bg);
+        flex-shrink: 0;
+        margin-top: 4px;
+        position: relative;
+        z-index: 1;
+        transition: border-color 0.2s, background 0.2s;
+      }
+
+      .timeline-item:hover .timeline-dot {
+        border-color: var(--accent);
+        background: var(--accent);
+      }
+
+      .timeline-line {
+        flex: 1;
+        width: 1px;
+        background: var(--border);
+        margin-top: 4px;
+      }
+
+      .timeline-item:last-child .timeline-line { display: none; }
+
+      .timeline-content {
+        padding-left: 20px;
+        padding-bottom: 36px;
+      }
+
+      .timeline-item:last-child .timeline-content { padding-bottom: 0; }
+
+      .timeline-date-col {
+        text-align: right;
+        padding-right: 20px;
+        padding-top: 3px;
+        padding-bottom: 36px;
+      }
+
+      .timeline-item:last-child .timeline-date-col { padding-bottom: 0; }
+
+      .timeline-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--fg);
+        margin-bottom: 6px;
+        line-height: 1.3;
+      }
+
+      .timeline-desc {
+        font-size: 13px;
+        color: var(--fg2);
+        line-height: 1.7;
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 36px 56px;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      footer p {
+        font-size: 12px;
+        color: var(--fg2);
+        font-family: var(--mono);
+      }
+
+      .fi {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+
+      .fi.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      .fi-d1 { transition-delay: 0.08s; }
+      .fi-d2 { transition-delay: 0.16s; }
+      .fi-d3 { transition-delay: 0.24s; }
+      .fi-d4 { transition-delay: 0.32s; }
+
+      @media (max-width: 760px) {
+        nav {
+          padding: 16px 24px;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .nav-right {
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 12px;
+        }
+
+        .nav-links { gap: 20px; }
+        .hero { padding: 0 24px; }
+        .scroll-hint { left: 24px; }
+        .section-wrap,
+        .about-full { padding: 64px 24px; }
+        footer {
+          padding: 32px 24px;
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+
+        .about-grid-bottom { grid-template-columns: 1fr; }
+        .timeline-item { grid-template-columns: 80px 24px 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="nav">
+      <a href="#" class="nav-logo">nemoo<span class="dot">.</span>la</a>
+      <div class="nav-right">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" type="button">
+          <svg
+            id="theme-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></svg>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#history">History</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="hero-wrap">
+      <canvas id="hero-canvas"></canvas>
+
+      <div class="hero">
+        <div class="hero-eyebrow fi fi-d1">
+          <span class="hero-eyebrow-tag">Developer</span>
+          <span class="hero-eyebrow-tag">Student</span>
+        </div>
+        <h1 class="fi fi-d2">Nemoola</h1>
+        <p class="hero-sub fi fi-d3">
+          大学生。セキュリティ &amp; CTFに興味あり。<br />
+          バグバウンティを探求中。
+        </p>
+        <div class="hero-links fi fi-d4">
+          {
+            socialLinks.map((link) => (
+              <a href={link.href} class="hero-link" target="_blank" rel="noreferrer">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill={link.fill}
+                  stroke={link.stroke}
+                  stroke-width={link.stroke ? '2' : undefined}
+                  set:html={link.icon}
+                />
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="scroll-hint">
+        <div class="scroll-hint-line"></div>
+        Scroll
+      </div>
+    </div>
+
+    <div class="about-full" id="about">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">About</span>
+      </div>
+
+      <p class="about-statement-text">
+        プログラミングのアルバイトをしています。アルバイト先の先輩の影響で <em>CTF</em> を始めました。
+        最近は <em>バグバウンティ</em> に興味を持っています。セキュリティ全般を探求中。
+      </p>
+
+      <div class="about-grid-bottom">
+        {
+          aboutColumns.map((column) => (
+            <div>
+              <div class="about-col-label">{column.label}</div>
+              {column.items.map((item) => <div class="about-col-item">{item}</div>)}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="section-wrap" id="projects">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Projects</span>
+      </div>
+      <div class="projects-empty">
+        <div class="projects-empty-glyph">// TODO: add projects</div>
+        <h3>Coming soon</h3>
+        <p>まだないのでこれから頑張る</p>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="section-wrap" id="history">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">History</span>
+      </div>
+      <div class="timeline">
+        {
+          timelineItems.map((item) => (
+            <div class="timeline-item">
+              <div class="timeline-date-col"><div class="timeline-date">{item.date}</div></div>
+              <div class="timeline-center">
+                <div class="timeline-dot"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">{item.title}</div>
+                {item.description && <div class="timeline-desc">{item.description}</div>}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Nemoola. All rights reserved.</p>
+      <p>nemoo<span style="color:var(--accent)">.</span>la</p>
+    </footer>
+
+    <script>
+      const nav = document.getElementById('nav');
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+
+      let isDark = false;
+
+      const SUN_SVG =
+        '<circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>';
+      const MOON_SVG = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
+
+      const updateIcon = () => {
+        if (themeIcon instanceof SVGElement) {
+          themeIcon.innerHTML = isDark ? SUN_SVG : MOON_SVG;
+        }
+      };
+
+      const setTheme = (theme) => {
+        isDark = theme === 'dark';
+        updateIcon();
+
+        if (isDark) {
+          document.documentElement.style.setProperty('--bg', '#111010');
+          document.documentElement.style.setProperty('--bg2', '#1a1918');
+          document.documentElement.style.setProperty('--fg', '#f0efec');
+          document.documentElement.style.setProperty('--fg2', '#888480');
+          document.documentElement.style.setProperty('--border', '#2c2b29');
+          document.documentElement.style.setProperty('--accent-light', 'oklch(18% 0.04 278)');
+          return;
+        }
+
+        document.documentElement.style.setProperty('--bg', '#f9f8f6');
+        document.documentElement.style.setProperty('--bg2', '#f2f0ec');
+        document.documentElement.style.setProperty('--fg', '#0f0e0c');
+        document.documentElement.style.setProperty('--fg2', '#7a7872');
+        document.documentElement.style.setProperty('--border', '#e5e3de');
+        document.documentElement.style.setProperty('--accent-light', 'oklch(95% 0.04 210)');
+      };
+
+      const toggleTheme = () => {
+        setTheme(isDark ? 'light' : 'dark');
+      };
+
+      if (nav instanceof HTMLElement) {
+        window.addEventListener('scroll', () => {
+          nav.classList.toggle('scrolled', window.scrollY > 20);
+        });
+      }
+
+      if (themeToggle instanceof HTMLButtonElement) {
+        themeToggle.addEventListener('click', toggleTheme);
+      }
+
+      updateIcon();
+
+      (() => {
+        const canvas = document.getElementById('hero-canvas');
+        if (!(canvas instanceof HTMLCanvasElement)) {
+          return;
+        }
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          return;
+        }
+
+        let width = 0;
+        let height = 0;
+        let particles = [];
+        const mouse = { x: -999, y: -999 };
+        const COUNT = 140;
+
+        const rand = (min, max) => min + Math.random() * (max - min);
+
+        const resize = () => {
+          width = canvas.width = canvas.offsetWidth;
+          height = canvas.height = canvas.offsetHeight;
+        };
+
+        const createParticle = () => ({
+          x: rand(0, width),
+          y: rand(0, height),
+          r: rand(1, 2.5),
+          vx: rand(-0.25, 0.25),
+          vy: rand(-0.3, -0.05),
+          alpha: rand(0.15, 0.55),
+        });
+
+        const init = () => {
+          particles = Array.from({ length: COUNT }, createParticle);
+        };
+
+        const hue = (x) => Math.round((x / width) * 300 + 20);
+        const particleLightness = () => (isDark ? '68%' : '38%');
+        const particleAlpha = (base) => (isDark ? base : base * 1.6);
+
+        const draw = () => {
+          ctx.clearRect(0, 0, width, height);
+
+          for (let i = 0; i < particles.length; i += 1) {
+            for (let j = i + 1; j < particles.length; j += 1) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < 170) {
+                const midX = (particles[i].x + particles[j].x) / 2;
+                ctx.beginPath();
+                ctx.strokeStyle = `hsla(${hue(midX)}, 75%, 62%, ${0.28 * (1 - distance / 170)})`;
+                ctx.lineWidth = 1.1;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+              }
+            }
+
+            const mouseDx = particles[i].x - mouse.x;
+            const mouseDy = particles[i].y - mouse.y;
+            const mouseDistance = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
+
+            if (mouseDistance < 200) {
+              ctx.beginPath();
+              ctx.strokeStyle = `hsla(${hue(particles[i].x)}, 80%, 62%, ${0.45 * (1 - mouseDistance / 200)})`;
+              ctx.lineWidth = 1.2;
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+            }
+          }
+
+          for (const particle of particles) {
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${hue(particle.x)}, 75%, ${particleLightness()}, ${particleAlpha(particle.alpha)})`;
+            ctx.fill();
+
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+
+            if (particle.y < -10) {
+              particle.y = height + 5;
+              particle.x = rand(0, width);
+            }
+
+            if (particle.x < -10) particle.x = width + 5;
+            if (particle.x > width + 10) particle.x = -5;
+          }
+
+          window.requestAnimationFrame(draw);
+        };
+
+        window.addEventListener('resize', () => {
+          resize();
+          init();
+        });
+
+        window.addEventListener('mousemove', (event) => {
+          const rect = canvas.getBoundingClientRect();
+          mouse.x = event.clientX - rect.left;
+          mouse.y = event.clientY - rect.top;
+        });
+
+        resize();
+        init();
+        draw();
+      })();
+
+      document.querySelectorAll('.hero-wrap .fi').forEach((element) => {
+        window.setTimeout(() => {
+          element.classList.add('in');
+        }, 60);
+      });
+    </script>
+  </body>
 </html>
