@@ -1,0 +1,94 @@
+<site-nav>
+  <nav
+    data-nav
+    data-scrolled="false"
+    class="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-transparent px-14 py-5 transition-[background,border-color] duration-300 data-[scrolled=true]:border-border data-[scrolled=true]:bg-[color-mix(in_srgb,var(--bg)_90%,transparent)] data-[scrolled=true]:backdrop-blur-[16px] max-[760px]:items-start max-[760px]:gap-4 max-[760px]:px-6 max-[760px]:py-4"
+  >
+    <a href="#" class="font-mono text-[13px] font-bold tracking-[0.06em] text-fg no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">nemoo<span class="text-accent">.</span>la</a>
+    <div class="flex items-center gap-6 max-[760px]:flex-col max-[760px]:items-end max-[760px]:gap-3">
+      <button
+        class="flex size-5 cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-fg-2 [transition:color_0.2s_ease,transform_0.2s_ease] hover:[transform:rotate(20deg)] hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent [&_svg]:size-4"
+        data-theme-toggle
+        title="Toggle dark mode"
+        type="button"
+      >
+        <svg
+          data-theme-icon
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></svg>
+      </button>
+      <ul class="flex list-none items-center gap-9 max-[760px]:gap-5">
+        <li><a href="#about" class="relative text-[13px] font-medium tracking-[0.04em] text-fg-2 no-underline transition-colors duration-200 after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-accent after:transition-[width] after:duration-200 hover:text-accent hover:after:w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">About</a></li>
+        <li><a href="#projects" class="relative text-[13px] font-medium tracking-[0.04em] text-fg-2 no-underline transition-colors duration-200 after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-accent after:transition-[width] after:duration-200 hover:text-accent hover:after:w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">Projects</a></li>
+        <li><a href="#history" class="relative text-[13px] font-medium tracking-[0.04em] text-fg-2 no-underline transition-colors duration-200 after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-accent after:transition-[width] after:duration-200 hover:text-accent hover:after:w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">History</a></li>
+      </ul>
+    </div>
+  </nav>
+</site-nav>
+
+<script>
+  const SUN_SVG =
+    '<circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>';
+  const MOON_SVG = '<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
+
+  class SiteNavElement extends HTMLElement {
+    connectedCallback() {
+      const nav = this.querySelector('[data-nav]');
+      const toggle = this.querySelector('[data-theme-toggle]');
+      const icon = this.querySelector('[data-theme-icon]');
+
+      if (!(nav instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement) || !(icon instanceof SVGElement)) {
+        return;
+      }
+
+      let isDark = false;
+
+      const updateIcon = () => {
+        icon.innerHTML = isDark ? SUN_SVG : MOON_SVG;
+      };
+
+      const setTheme = (theme: 'light' | 'dark') => {
+        isDark = theme === 'dark';
+        updateIcon();
+
+        if (isDark) {
+          document.documentElement.style.setProperty('--bg', '#111010');
+          document.documentElement.style.setProperty('--bg2', '#1a1918');
+          document.documentElement.style.setProperty('--fg', '#f0efec');
+          document.documentElement.style.setProperty('--fg2', '#888480');
+          document.documentElement.style.setProperty('--border', '#2c2b29');
+          document.documentElement.style.setProperty('--accent-light', 'oklch(18% 0.04 278)');
+          return;
+        }
+
+        document.documentElement.style.setProperty('--bg', '#f9f8f6');
+        document.documentElement.style.setProperty('--bg2', '#f2f0ec');
+        document.documentElement.style.setProperty('--fg', '#0f0e0c');
+        document.documentElement.style.setProperty('--fg2', '#7a7872');
+        document.documentElement.style.setProperty('--border', '#e5e3de');
+        document.documentElement.style.setProperty('--accent-light', 'oklch(95% 0.04 210)');
+      };
+
+      const handleScroll = () => {
+        nav.dataset.scrolled = String(window.scrollY > 20);
+      };
+
+      toggle.addEventListener('click', () => {
+        setTheme(isDark ? 'light' : 'dark');
+      });
+
+      window.addEventListener('scroll', handleScroll);
+      updateIcon();
+      handleScroll();
+    }
+  }
+
+  if (!customElements.get('site-nav')) {
+    customElements.define('site-nav', SiteNavElement);
+  }
+</script>

@@ -1,0 +1,43 @@
+---
+import SectionBlock from '../common/SectionBlock.astro';
+
+const aboutColumns = [
+  {
+    label: 'Profile',
+    items: ['Go Language', 'Zed Editor', 'INFJ', 'Japan'],
+  },
+  {
+    label: 'Languages',
+    items: ['Go', 'V', 'C++', 'PHP'],
+  },
+  {
+    label: 'Frameworks & Tools',
+    items: ['Nuxt.js', 'TailwindCSS', 'Docker', 'Git'],
+  },
+  {
+    label: 'Interests',
+    items: ['Security', 'CTF', 'OSS'],
+  },
+];
+---
+
+<SectionBlock id="about" number="01" title="About" variant="full">
+  <p class="max-w-[600px] text-[clamp(17px,2vw,22px)] leading-[1.85] font-normal text-fg-2 [&_em]:font-medium [&_em]:not-italic [&_em]:text-accent">
+    プログラミングのアルバイトをしています。アルバイト先の先輩の影響で <em>CTF</em> を始めました。 最近は <em>バグバウンティ</em> に興味を持っています。
+  </p>
+
+  <div class="grid grid-cols-4 gap-8 max-[760px]:grid-cols-1">
+    {
+      aboutColumns.map((column) => (
+        <div>
+          <div class="mb-4 font-mono text-[10px] tracking-[0.16em] text-fg-2 uppercase">{column.label}</div>
+          {column.items.map((item) => (
+            <div class="flex items-center gap-[7px] border-b border-border py-[7px] text-[13px] font-medium text-fg transition-[color] duration-150 ease-[ease] last:border-b-0 hover:text-accent before:size-[3px] before:shrink-0 before:rounded-full before:bg-current before:opacity-40">
+              {item}
+            </div>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</SectionBlock>

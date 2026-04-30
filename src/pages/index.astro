@@ -1,0 +1,18 @@
+---
+import SiteFooter from '../components/layout/SiteFooter.astro';
+import SiteNav from '../components/layout/SiteNav.astro';
+import AboutSection from '../components/sections/AboutSection.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import HistorySection from '../components/sections/HistorySection.astro';
+import ProjectsSection from '../components/sections/ProjectsSection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Nemoola">
+  <SiteNav />
+  <HeroSection />
+  <AboutSection />
+  <ProjectsSection />
+  <HistorySection />
+  <SiteFooter />
+</BaseLayout>
