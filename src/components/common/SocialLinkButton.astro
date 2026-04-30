@@ -9,7 +9,7 @@ const { href, label } = Astro.props;
 
 <a
   href={href}
-  class="inline-flex items-center gap-1.5 rounded-md border border-border bg-[color-mix(in_srgb,var(--bg)_80%,transparent)] px-5 py-2.5 text-xs font-medium tracking-[0.02em] text-fg-2 no-underline backdrop-blur-[6px] transition-[border-color,color,background,transform] duration-200 hover:-translate-y-px hover:border-accent hover:bg-accent-light hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent [&_svg]:size-[13px] [&_svg]:shrink-0"
+  class="inline-flex items-center gap-1.5 rounded-md border border-border bg-[color-mix(in_srgb,var(--bg)_80%,transparent)] px-5 py-2.5 text-xs font-medium tracking-[0.02em] text-fg-2 no-underline backdrop-blur-[6px] [transition:border-color_0.2s_ease,color_0.2s_ease,background_0.2s_ease,transform_0.15s_ease] hover:[transform:translateY(-1px)] hover:border-accent hover:bg-accent-light hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent [&_svg]:size-[13px] [&_svg]:shrink-0"
   target="_blank"
   rel="noreferrer"
 >
