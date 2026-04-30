@@ -22,79 +22,22 @@ const aboutColumns = [
 ---
 
 <SectionBlock id="about" number="01" title="About" variant="full">
-  <p class="about-statement-text">
-    プログラミングのアルバイトをしています。アルバイト先の先輩の影響で <em>CTF</em> を始めました。
-    最近は <em>バグバウンティ</em> に興味を持っています。セキュリティ全般を探求中。
+  <p class="max-w-[600px] text-[clamp(17px,2vw,22px)] leading-[1.85] font-normal text-fg-2 [&_em]:font-medium [&_em]:not-italic [&_em]:text-accent">
+    プログラミングのアルバイトをしています。アルバイト先の先輩の影響で <em>CTF</em> を始めました。 最近は <em>バグバウンティ</em> に興味を持っています。セキュリティ全般を探求中。
   </p>
 
-  <div class="about-grid-bottom">
+  <div class="grid grid-cols-4 gap-8 max-[760px]:grid-cols-1">
     {
       aboutColumns.map((column) => (
         <div>
-          <div class="about-col-label">{column.label}</div>
-          {column.items.map((item) => <div class="about-col-item">{item}</div>)}
+          <div class="mb-4 font-mono text-[10px] tracking-[0.16em] text-fg-2 uppercase">{column.label}</div>
+          {column.items.map((item) => (
+            <div class="flex items-center gap-[7px] border-b border-border py-[7px] text-[13px] font-medium text-fg transition-colors duration-150 last:border-b-0 hover:text-accent before:size-[3px] before:shrink-0 before:rounded-full before:bg-current before:opacity-40">
+              {item}
+            </div>
+          ))}
         </div>
       ))
     }
   </div>
 </SectionBlock>
-
-<style>
-  .about-statement-text {
-    font-size: clamp(17px, 2vw, 22px);
-    font-weight: 400;
-    line-height: 1.85;
-    color: var(--fg2);
-    max-width: 600px;
-  }
-
-  .about-statement-text em {
-    font-style: normal;
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .about-grid-bottom {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-  }
-
-  .about-col-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--fg2);
-    margin-bottom: 16px;
-  }
-
-  .about-col-item {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--fg);
-    padding: 7px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    transition: color 0.15s;
-  }
-
-  .about-col-item:last-child { border-bottom: none; }
-  .about-col-item:hover { color: var(--accent); }
-
-  .about-col-item::before {
-    content: '';
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0.4;
-    flex-shrink: 0;
-  }
-
-  @media (max-width: 760px) {
-    .about-grid-bottom { grid-template-columns: 1fr; }
-  }
-</style>

@@ -3,44 +3,10 @@ import SectionBlock from '../common/SectionBlock.astro';
 ---
 
 <SectionBlock id="projects" number="02" title="Projects">
-  <div class="projects-empty">
-    <div class="projects-empty-glyph">// TODO: add projects</div>
-    <h3>Coming soon</h3>
-    <p>まだないのでこれから頑張る</p>
+  <div class="rounded-xl border border-dashed border-border bg-bg px-12 py-[72px] text-center transition-colors duration-200 hover:border-accent">
+    <div class="mb-5 font-mono text-[13px] tracking-[0.1em] text-fg-2 opacity-40">// TODO: add projects</div>
+    <h3 class="mb-2 text-lg font-semibold text-fg">Coming soon</h3>
+    <p class="text-sm text-fg-2">まだないのでこれから頑張る</p>
   </div>
   <div></div>
 </SectionBlock>
-
-<style>
-  .projects-empty {
-    padding: 72px 48px;
-    border: 1px dashed var(--border);
-    border-radius: 12px;
-    text-align: center;
-    background: var(--bg);
-    transition: border-color 0.2s;
-  }
-
-  .projects-empty:hover { border-color: var(--accent); }
-
-  .projects-empty-glyph {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--fg2);
-    letter-spacing: 0.1em;
-    margin-bottom: 20px;
-    opacity: 0.4;
-  }
-
-  h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--fg);
-    margin-bottom: 8px;
-  }
-
-  p {
-    font-size: 14px;
-    color: var(--fg2);
-  }
-</style>

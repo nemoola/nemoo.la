@@ -1,8 +1,17 @@
 <site-nav>
-  <nav data-nav>
-    <a href="#" class="nav-logo">nemoo<span class="dot">.</span>la</a>
-    <div class="nav-right">
-      <button class="theme-toggle" data-theme-toggle title="Toggle dark mode" type="button">
+  <nav
+    data-nav
+    data-scrolled="false"
+    class="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-transparent px-14 py-5 transition-[background,border-color] duration-300 data-[scrolled=true]:border-border data-[scrolled=true]:bg-[color-mix(in_srgb,var(--bg)_90%,transparent)] data-[scrolled=true]:backdrop-blur-[16px] max-[760px]:items-start max-[760px]:gap-4 max-[760px]:px-6 max-[760px]:py-4"
+  >
+    <a href="#" class="font-mono text-[13px] font-bold tracking-[0.06em] text-fg no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">nemoo<span class="text-accent">.</span>la</a>
+    <div class="flex items-center gap-6 max-[760px]:flex-col max-[760px]:items-end max-[760px]:gap-3">
+      <button
+        class="flex size-5 cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-fg-2 transition-[color,transform] duration-200 hover:rotate-[20deg] hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent [&_svg]:size-4"
+        data-theme-toggle
+        title="Toggle dark mode"
+        type="button"
+      >
         <svg
           data-theme-icon
           viewBox="0 0 24 24"
@@ -13,10 +22,10 @@
           stroke-linejoin="round"
         ></svg>
       </button>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#history">History</a></li>
+      <ul class="flex list-none items-center gap-9 max-[760px]:gap-5">
+        <li><a href="#about" class="relative text-[13px] font-medium tracking-[0.04em] text-fg-2 no-underline transition-colors duration-200 after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-accent after:transition-[width] after:duration-200 hover:text-accent hover:after:w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">About</a></li>
+        <li><a href="#projects" class="relative text-[13px] font-medium tracking-[0.04em] text-fg-2 no-underline transition-colors duration-200 after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-accent after:transition-[width] after:duration-200 hover:text-accent hover:after:w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">Projects</a></li>
+        <li><a href="#history" class="relative text-[13px] font-medium tracking-[0.04em] text-fg-2 no-underline transition-colors duration-200 after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-accent after:transition-[width] after:duration-200 hover:text-accent hover:after:w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">History</a></li>
       </ul>
     </div>
   </nav>
@@ -43,7 +52,7 @@
         icon.innerHTML = isDark ? SUN_SVG : MOON_SVG;
       };
 
-      const setTheme = (theme) => {
+      const setTheme = (theme: 'light' | 'dark') => {
         isDark = theme === 'dark';
         updateIcon();
 
@@ -66,7 +75,7 @@
       };
 
       const handleScroll = () => {
-        nav.classList.toggle('scrolled', window.scrollY > 20);
+        nav.dataset.scrolled = String(window.scrollY > 20);
       };
 
       toggle.addEventListener('click', () => {
@@ -83,113 +92,3 @@
     customElements.define('site-nav', SiteNavElement);
   }
 </script>
-
-<style>
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 20px 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background 0.4s, border-color 0.3s;
-    border-bottom: 1px solid transparent;
-  }
-
-  nav.scrolled {
-    background: color-mix(in srgb, var(--bg) 90%, transparent);
-    backdrop-filter: blur(16px);
-    border-color: var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--fg);
-    text-decoration: none;
-  }
-
-  .dot { color: var(--accent); }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-links a {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--fg2);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-    position: relative;
-  }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 1px;
-    background: var(--accent);
-    transition: width 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-  .nav-links a:hover::after { width: 100%; }
-
-  .theme-toggle {
-    width: 20px;
-    height: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.2s, transform 0.2s;
-    color: var(--fg2);
-    padding: 0;
-  }
-
-  .theme-toggle:hover {
-    color: var(--accent);
-    transform: rotate(20deg);
-  }
-
-  .theme-toggle svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  @media (max-width: 760px) {
-    nav {
-      padding: 16px 24px;
-      align-items: flex-start;
-      gap: 16px;
-    }
-
-    .nav-right {
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .nav-links { gap: 20px; }
-  }
-</style>
